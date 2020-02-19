@@ -1,46 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import AllEmployees from './components/Employee/AllEmployees';
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import AllJiras from './components/Jira/AllJiras';
+import { Button, Grid } from '@material-ui/core';
 
-function App() {
-  return (
-    <>
-      <Navbar />
-      <AllEmployees />
-    </>
-    
-  );
+var components = {
+  employees : <AllEmployees />,
+  jiras : <AllJiras />
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
 
-function Navbar() {
-  const classes = useStyles();
+class App extends Component
+{
+  state = {
+    selectedComponent : components.employees
+  }
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h5" className={classes.title}>
-            Akshat Singhal App
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+  changeComponent = (comp) =>{
+    this.setState(
+      {
+        selectedComponent : comp
+      }
+    )
+  }
+
+  render(){
+    return (
+      <>
+        <div>
+          <AppBar position="static">
+            <Toolbar>
+              <Grid container direction="row" spacing={1} justify="flex-start">
+                <Grid item xs={3}>
+                  <Typography variant="h5">
+                    Akshat Singhal App
+                  </Typography>
+                </Grid>
+                <Grid item xs={9}>
+                  <Button onClick={() => this.changeComponent(components.jiras)}  color="inherit">Jiras</Button>
+                  <Button onClick={() => this.changeComponent(components.employees)} color="inherit">Employees</Button>
+                </Grid>
+              </Grid>
+            </Toolbar>
+          </AppBar>
+        </div>
+        {this.state.selectedComponent}
+      </>
+      
+    );
+  }
 }
 
 export default App;
