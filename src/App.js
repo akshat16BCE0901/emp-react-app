@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import AllEmployees from './components/Employee/AllEmployees';
 import AllJiras from './components/Jira/AllJiras';
+import AddEmployeeForm from './components/Employee/AddEmployeeForm';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -12,7 +13,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 var components = {
   employees : <AllEmployees />,
-  jiras : <AllJiras />
+  jiras : <AllJiras />,
+  addEmployeeForm : <AddEmployeeForm />
 }
 
 
@@ -42,12 +44,11 @@ class App extends Component
             <Nav variant="pills" className="mr-auto">
               <Nav.Link onClick={() => this.changeComponent(components.employees)} >Employees</Nav.Link>
               <Nav.Link onClick={() => this.changeComponent(components.jiras)} >Jiras</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Option 1</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Option 2</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Option 3</NavDropdown.Item>
+              <NavDropdown title="Add" id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={()=> this.changeComponent(components.addEmployeeForm)} >Employee</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Jira</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Another</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.4">Project</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Form inline>
@@ -56,7 +57,9 @@ class App extends Component
             </Form>
           </Navbar.Collapse>
         </Navbar>
-        {this.state.selectedComponent}
+        <div className="container" style={{marginTop:"10px"}}>
+          {this.state.selectedComponent}
+        </div>
       </>
       
     );
