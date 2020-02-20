@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
 import AllEmployees from './components/Employee/AllEmployees';
 import AllJiras from './components/Jira/AllJiras';
-import { Button, Grid } from '@material-ui/core';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 var components = {
   employees : <AllEmployees />,
@@ -15,9 +18,11 @@ var components = {
 
 class App extends Component
 {
+
   state = {
     selectedComponent : components.employees
   }
+
 
   changeComponent = (comp) =>{
     this.setState(
@@ -30,23 +35,27 @@ class App extends Component
   render(){
     return (
       <>
-        <div>
-          <AppBar position="static">
-            <Toolbar>
-              <Grid container direction="row" spacing={1} justify="flex-start">
-                <Grid item xs={3}>
-                  <Typography variant="h5">
-                    Akshat Singhal App
-                  </Typography>
-                </Grid>
-                <Grid item xs={9}>
-                  <Button onClick={() => this.changeComponent(components.jiras)}  color="inherit">Jiras</Button>
-                  <Button onClick={() => this.changeComponent(components.employees)} color="inherit">Employees</Button>
-                </Grid>
-              </Grid>
-            </Toolbar>
-          </AppBar>
-        </div>
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand href="#home">Akshat Singhal App</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link onClick={() => this.changeComponent(components.employees)} >Employees</Nav.Link>
+              <Nav.Link onClick={() => this.changeComponent(components.jiras)} >Jiras</Nav.Link>
+              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Option 1</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Option 2</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Option 3</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Another</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            <Form inline>
+              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+              <Button variant="outline-success">Search</Button>
+            </Form>
+          </Navbar.Collapse>
+        </Navbar>
         {this.state.selectedComponent}
       </>
       
