@@ -44,10 +44,10 @@ class AddEmployeeForm extends Component
                             
                             <Form.Group as={Row}>
                                 <Form.Label column sm="2">
-                                    Phone
+                                    Address
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="phone" type="text" placeholder="Phone Number"></Form.Control>
+                                    <Form.Control id="address" as="textarea" placeholder="Address" ></Form.Control>
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row}>
