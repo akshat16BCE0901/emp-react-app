@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Table, TableRow, TableCell,TableBody,TableHead } from '@material-ui/core';
 import Axios from 'axios';
+import Table from 'react-bootstrap/Table';
 
 class AllEmployees extends Component
 {
@@ -20,35 +20,37 @@ class AllEmployees extends Component
 
     render(){
         return(
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell style={{fontWeight:"bold"}} component="th" color="inherit"> ID</TableCell>
-                        <TableCell style={{fontWeight:"bold"}} >First Name</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Last Name</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Address</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Phone</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Email</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Date of Birth</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {
-                        this.state.employees.map(row =>
-                            (
-                                <TableRow key={row.id}>
-                                    <TableCell>{row.id}</TableCell>
-                                    <TableCell>{row.firstname}</TableCell>
-                                    <TableCell>{row.lastname}</TableCell>
-                                    <TableCell>{row.address}</TableCell>
-                                    <TableCell>{row.phone}</TableCell>
-                                    <TableCell>{row.email}</TableCell>
-                                    <TableCell>{row.date_of_birth}</TableCell>
-                                </TableRow>
-                            ))
-                    }
-                </TableBody>
-            </Table>
+                
+                <Table responsive striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Date of Birth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.state.employees.map(row =>
+                                (
+                                    <tr key={row.id}>
+                                        <td>{row.id}</td>
+                                        <td>{row.firstname}</td>
+                                        <td>{row.lastname}</td>
+                                        <td>{row.address}</td>
+                                        <td>{row.phone}</td>
+                                        <td>{row.email}</td>
+                                        <td>{row.date_of_birth}</td>
+                                    </tr>
+                                ))
+                        }
+                    </tbody>
+                </Table>
+        
         )
     }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Table, TableRow, TableCell,TableBody,TableHead } from '@material-ui/core';
+import Table from 'react-bootstrap/Table';
 import Axios from 'axios';
 
 class AllJiras extends Component
@@ -19,45 +19,45 @@ class AllJiras extends Component
 
     render(){
         return(
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell style={{fontWeight:"bold"}} component="th" color="inherit"> ID</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Title</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Description</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Priority</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Story Points</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Project</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Sprint</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Assignee</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Assigned To</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Date Created</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Status</TableCell>
-                        <TableCell style={{fontWeight:"bold"}}>Date Ended</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
+            <Table responsive hover striped bordered>
+                <thead>
+                    <tr>
+                        <th> ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Priority</th>
+                        <th>Story Points</th>
+                        <th>Project</th>
+                        <th>Sprint</th>
+                        <th>Assignee</th>
+                        <th>Assigned To</th>
+                        <th>Date Created</th>
+                        <th>Status</th>
+                        <th>Date Ended</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {
                         this.state.jiras.map(row =>
                             (
-                                <TableRow key={row.id}>
-                                    <TableCell>{row.id}</TableCell>
-                                    <TableCell>{row.title}</TableCell>
-                                    <TableCell>{row.description}</TableCell>
-                                    <TableCell>{row.priority}</TableCell>
-                                    <TableCell>{row.story_points}</TableCell>
-                                    <TableCell>{row.project.id}</TableCell>
-                                    <TableCell>{row.sprint}</TableCell>
-                                    <TableCell>{row.assignee.id}</TableCell>
-                                    <TableCell>{row.assigned_to.id}</TableCell>
-                                    <TableCell>{row.date_created}</TableCell>
-                                    <TableCell>{row.status}</TableCell>
-                                    <TableCell>{row.date_ended!=null?row.date_ended:"----"}</TableCell>
-                                </TableRow>
+                                <tr key={row.id}>
+                                    <td>{row.id}</td>
+                                    <td>{row.title}</td>
+                                    <td>{row.description}</td>
+                                    <td>{row.priority}</td>
+                                    <td>{row.story_points}</td>
+                                    <td>{row.project.id}</td>
+                                    <td>{row.sprint}</td>
+                                    <td>{row.assignee.id}</td>
+                                    <td>{row.assigned_to.id}</td>
+                                    <td>{row.date_created}</td>
+                                    <td>{row.status}</td>
+                                    <td>{row.date_ended!=null?row.date_ended:"----"}</td>
+                                </tr>
                                 
                             ))
                     }
-                </TableBody>
+                </tbody>
             </Table>
         )
     }
