@@ -46,13 +46,12 @@ class AddEmployeeForm extends Component
     render(){
         return(
             <>
-                <div className="row">
+                <div style={{padding : "10px",backgroundColor : "white"}} className="row">
                     <div className="col-md-12 text-center">
                         <h2 className="text-center">Add Employee</h2>
                     </div>
                 </div>
-                <br />
-                <div className="row">
+                <div style={{backgroundColor : "white"}} className="row">
                     <div className="col-md-3"></div>
                     <div className="col-md-6">
                         <Form onSubmit={this.formSubmit}>

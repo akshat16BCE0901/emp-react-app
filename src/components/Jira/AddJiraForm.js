@@ -58,13 +58,12 @@ class AddJiraForm extends Component
     render(){
         return(
             <>                
-                <div className="row">
+                <div style={{padding : "10px",backgroundColor : "white"}}  className="row">
                     <div className="col-md-12 text-center">
                         <h2 className="text-center">Add Jira</h2>
                     </div>
                 </div>
-                <br />
-                <div className="row">
+                <div style={{backgroundColor : "white"}}  className="row">
                     <div className="col-md-2"></div>
                     <div className="col-md-8">
                         <Form onSubmit={this.submitForm} >
