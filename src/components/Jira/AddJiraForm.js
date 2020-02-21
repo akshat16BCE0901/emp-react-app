@@ -2,9 +2,59 @@ import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
 
 class AddJiraForm extends Component
 {
+    state = {
+        "title": "",
+        "description": "",
+        "priority": "Medium",
+        "story_points": 0,
+        "project_id": 0,
+        "sprint": null,
+        "assignee": 1,
+        "assigned_to": null,
+        "date_created": "2020-01-19",
+        "status": "",
+        "date_ended": null
+        }
+
+    controlInput = (e) =>
+    {
+        this.setState({
+            [e.target.name] : e.target.value
+        });
+    }
+
+    submitForm = (e) =>
+    {
+        e.preventDefault();
+        var jira = {
+            "title": this.state.title,
+            "description": this.state.description,
+            "priority": this.state.priority,
+            "story_points": this.state.story_points,
+            "project_id": {
+                "id" : this.state.project_id
+            },
+            "sprint": this.state.sprint,
+            "assignee": {
+                "id" : this.state.assignee
+            },
+            "assigned_to": {
+                "id" : this.state.assigned_to
+            },
+            "date_created": this.state.date_created,
+            "status": this.state.status,
+            "date_ended": null
+        };
+
+        Axios.post("https://akkiapp.herokuapp.com/jira/add",jira)
+        .then(response => console.log(response));
+    }
+
     render(){
         return(
             <>                
@@ -17,13 +67,13 @@ class AddJiraForm extends Component
                 <div className="row">
                     <div className="col-md-2"></div>
                     <div className="col-md-8">
-                        <Form>
+                        <Form onSubmit={this.submitForm} >
                             <Form.Group as={Row}>
                                 <Form.Label column sm="2">
                                     Title
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="title" type="text" placeholder="Title"></Form.Control>
+                                    <Form.Control onChange={this.controlInput} name="title"  id="title" type="text" placeholder="Title"></Form.Control>
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row}>
@@ -31,7 +81,7 @@ class AddJiraForm extends Component
                                     Description
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="description" as="textarea" placeholder="Description" ></Form.Control>
+                                    <Form.Control onChange={this.controlInput} name="description" id="description" as="textarea" placeholder="Description" ></Form.Control>
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row}>
@@ -39,9 +89,9 @@ class AddJiraForm extends Component
                                     Priority
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="priority" as="select" >
+                                    <Form.Control onChange={this.controlInput} name="priority" id="priority" as="select" >
                                         <option value="High">High</option>
-                                        <option selected value="Medium">Medium</option>
+                                        <option value="Medium">Medium</option>
                                         <option value="Low">Low</option>
                                     </Form.Control>
                                 </Col>
@@ -51,7 +101,7 @@ class AddJiraForm extends Component
                                     Story Points
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="story_points" type="number" min="0" max="10" ></Form.Control>
+                                    <Form.Control onChange={this.controlInput} name="story_points" id="story_points" type="number" min="0" max="10" ></Form.Control>
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row}>
@@ -59,9 +109,9 @@ class AddJiraForm extends Component
                                     Project
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="project_id" as="select" >
+                                    <Form.Control onChange={this.controlInput} name="project_id" id="project_id" as="select" >
                                         <option value="1">1 - DAC Refinement</option>
-                                        <option selected value="2">2 - DAM Refinement</option>
+                                        <option value="2">2 - DAM Refinement</option>
                                         <option value="3">3 - CES Refinement</option>
                                     </Form.Control>
                                 </Col>
@@ -71,7 +121,7 @@ class AddJiraForm extends Component
                                     Sprint
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="sprint" as="select" >
+                                    <Form.Control onChange={this.controlInput} name="sprint" id="sprint" as="select" >
                                         <option value="52.1">52.1</option>
                                         <option value="52.2">52.2</option>
                                         <option value="53.1">53.1</option>
@@ -83,7 +133,7 @@ class AddJiraForm extends Component
                                     Assignee
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="assignee" plaintext readOnly defaultValue="Praful Martis" />
+                                    <Form.Control onChange={this.controlInput} name="assignee" id="assignee" plaintext readOnly defaultValue="Praful Martis" />
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row}>
@@ -91,9 +141,9 @@ class AddJiraForm extends Component
                                     Assigned To
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="assigned_to" as="select" >
+                                    <Form.Control onChange={this.controlInput} name="assigned_to" id="assigned_to" as="select" >
                                         <option value="1">Amruthkala Bhat</option>
-                                        <option selected value="2">Akshat Singhal</option>
+                                        <option value="2">Akshat Singhal</option>
                                         <option value="3">Amit Valse</option>
                                     </Form.Control>
                                 </Col>
@@ -103,19 +153,32 @@ class AddJiraForm extends Component
                                     Date Created
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="date_created" plaintext readOnly defaultValue="2020-02-21" />
+                                    <Form.Control onChange={this.controlInput} name="date_created" id="date_created" plaintext readOnly defaultValue="2020-02-21" />
                                 </Col>
                             </Form.Group>
-                            <Form.Group as={Row}>
+                            <Form.Group as={Row} style={{}}>
                                 <Form.Label column sm="2">
                                     Status
                                 </Form.Label>
                                 <Col sm="10">
-                                    <Form.Control id="status" plaintext readOnly defaultValue="Ready For Review" />
+                                    <Form.Control onChange={this.controlInput} name="status" id="status" as="select" >
+                                        <option value="Ready for review">Ready For review</option>
+                                        <option value="Ready">Ready</option>
+                                        <option value="In Play">In Play</option>
+                                    </Form.Control>
                                 </Col>
                             </Form.Group>
+                            <div as={Row}>
+                                <Col style={{textAlign : "center"}}>
+                                    <Button  size="lg" align="center" className="text-center" type="submit" >
+                                        Submit
+                                    </Button>
 
+                                </Col>
+                            </div>
                         </Form>
+                        <br />
+                        <br />
                     </div>
                     <div className="col-md-2"></div>
                 </div>

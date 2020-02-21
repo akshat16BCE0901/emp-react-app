@@ -15,7 +15,7 @@ class AllEmployees extends Component
         .then((data)=>{
             this.setState({employees : data});
             console.log(this.state.employees);
-        })
+        });
     }
 
     render(){

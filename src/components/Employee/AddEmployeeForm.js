@@ -66,6 +66,31 @@ class AddEmployeeForm extends Component
                                     <Form.Control id="date_of_birth" type="date"></Form.Control>
                                 </Col>
                             </Form.Group>
+                            <span><div className="row" style={{borderBottom:"1px solid #A9A9A9",paddingBottom:"5px",marginBottom:"30px"}}></div></span>
+                            <Form.Group as={Row} style={{marginTop:"2px"}}>
+                                <Form.Label column sm="2">
+                                    Username
+                                </Form.Label>
+                                <Col sm="10">
+                                    <Form.Control name="username" id="username" type="text" placeholder="Username"></Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="2">
+                                    Password
+                                </Form.Label>
+                                <Col sm="10">
+                                    <Form.Control name="password" id="password" type="password" placeholder="Password"></Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="2">
+                                    Confirm Password
+                                </Form.Label>
+                                <Col sm="10">
+                                    <Form.Control name="confirm" id="confirm" type="password" placeholder="Confirm Password"></Form.Control>
+                                </Col>
+                            </Form.Group>
                             
                             
                         </Form>
