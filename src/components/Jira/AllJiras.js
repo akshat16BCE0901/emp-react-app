@@ -46,7 +46,7 @@ class AllJiras extends Component
                                     <td>{row.description}</td>
                                     <td>{row.priority}</td>
                                     <td>{row.story_points}</td>
-                                    <td>{row.project.id}</td>
+                                    <td>{row.project_id}</td>
                                     <td>{row.sprint}</td>
                                     <td>{row.assignee.id}</td>
                                     <td>{row.assigned_to.id}</td>

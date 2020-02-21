@@ -173,12 +173,12 @@ class AddJiraForm extends Component
                                     <Button  size="lg" align="center" className="text-center" type="submit" >
                                         Submit
                                     </Button>
+                                    <br />
+                                    <br />
 
                                 </Col>
                             </div>
                         </Form>
-                        <br />
-                        <br />
                     </div>
                     <div className="col-md-2"></div>
                 </div>
