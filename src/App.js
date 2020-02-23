@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 
 import AllEmployees from './components/Employee/AllEmployees';
-import AllJiras from './components/Jira/AllJiras';
 import AddEmployeeForm from './components/Employee/AddEmployeeForm';
 import AddJiraForm from './components/Jira/AddJiraForm';
+import AllJiras from './components/Jira/AllJiras';
+import AllProjects from './components/Project/AllProjects';
+import AddProjectForm from './components/Project/AddProjectForm';
+
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -18,7 +21,9 @@ var components = {
   employees : <AllEmployees />,
   jiras : <AllJiras />,
   addEmployeeForm : <AddEmployeeForm />,
-  addJiraForm : <AddJiraForm />
+  addJiraForm : <AddJiraForm />,
+  projects : <AllProjects />,
+  addProjectForm : <AddProjectForm />
 }
 
 
@@ -48,11 +53,12 @@ class App extends Component
             <Nav variant="pills" className="mr-auto">
               <Nav.Link onClick={() => this.changeComponent(components.employees)} >Employees</Nav.Link>
               <Nav.Link onClick={() => this.changeComponent(components.jiras)} >Jiras</Nav.Link>
+              <Nav.Link onClick={() => this.changeComponent(components.projects)} >Projects</Nav.Link>
               <NavDropdown title="Add" id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={()=> this.changeComponent(components.addEmployeeForm)} >Employee</NavDropdown.Item>
                 <NavDropdown.Item onClick={()=> this.changeComponent(components.addJiraForm)} >Jira</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Project</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=> this.changeComponent(components.addProjectForm)}  >Project</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Form inline>

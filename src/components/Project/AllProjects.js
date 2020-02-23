@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Axios from 'axios';
 import Table from 'react-bootstrap/Table';
 
-class AllEmployees extends Component
+class AllProjects extends Component
 {
     state = {
         employees : []
@@ -10,7 +10,7 @@ class AllEmployees extends Component
 
     
     componentDidMount(){
-        const URL = "https://akkiapp.herokuapp.com/employee/viewall";
+        const URL = "https://akkiapp.herokuapp.com/project/viewall";
         Axios.get(URL).then(response => response.data)
         .then((data)=>{
             this.setState({employees : data});
@@ -27,12 +27,9 @@ class AllEmployees extends Component
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Address</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Date of Birth</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Project Head</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,12 +38,9 @@ class AllEmployees extends Component
                                     (
                                         <tr key={row.id}>
                                             <td>{row.id}</td>
-                                            <td>{row.firstname}</td>
-                                            <td>{row.lastname}</td>
-                                            <td>{row.address}</td>
-                                            <td>{row.phone}</td>
-                                            <td>{row.email}</td>
-                                            <td>{row.date_of_birth}</td>
+                                            <td>{row.name}</td>
+                                            <td>{row.description}</td>
+                                            <td>{row.project_head.id}</td>
                                         </tr>
                                     ))
                             }
@@ -59,4 +53,4 @@ class AllEmployees extends Component
     }
 }
 
-export default AllEmployees;
+export default AllProjects;
