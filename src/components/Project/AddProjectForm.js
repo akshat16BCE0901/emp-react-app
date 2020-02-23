@@ -38,7 +38,7 @@ class AddProjectForm extends Component
     }
 
     componentDidMount = () =>{
-        Axios.get("http://akkiapp.herokuapp.com/employee/getnames").then(response => response.data)
+        Axios.get("https://akkiapp.herokuapp.com/employee/getnames").then(response => response.data)
         .then((data) => {
             this.setState({employeesList : data});
             console.log(this.state.employeesList);
