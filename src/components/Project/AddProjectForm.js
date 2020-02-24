@@ -32,6 +32,7 @@ class AddProjectForm extends Component
                 "id" : this.state.project_head
             }
         };
+        console.log(project);
 
         Axios.post("https://akkiapp.herokuapp.com/project/add",project)
         .then(response => console.log(response));
@@ -79,6 +80,7 @@ class AddProjectForm extends Component
                                 </Form.Label>
                                 <Col sm="10">
                                     <Form.Control onChange={this.controlInput} name="project_head" id="project_head" as="select" >
+                                        <option value="null">Select Head</option>
                                         {
                                             this.state.employeesList.map(row => (
                                                 <option key={row.id} value={row.id}>{row.firstname+" "+row.lastname}</option>
