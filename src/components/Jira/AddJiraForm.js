@@ -54,7 +54,13 @@ class AddJiraForm extends Component
         };
 
         Axios.post("https://akkiapp.herokuapp.com/jira/add",jira)
-        .then(response => console.log(response));
+        .then(response =>{ 
+            console.log(response)
+            if(response.status===200)
+            {
+                alert("Registered Succesfully");
+            }
+        });
     }
 
     componentDidMount = () =>{
@@ -163,15 +169,12 @@ class AddJiraForm extends Component
                                 </Form.Label>
                                 <Col sm="10">
                                     <Form.Control onChange={this.controlInput} name="assigned_to" id="assigned_to" as="select" >
-                                       
+                                       <option>--Select--</option>
                                         {
                                             this.state.allEmployees.map(row => (
                                                 <option key={row.id} value={row.id}>{row.firstname+" "+row.lastname}</option>
                                             ))
                                         }
-                                        <option value="1">Amruthkala Bhat</option>
-                                        <option value="2">Akshat Singhal</option>
-                                        <option value="3">Amit Valse</option>
                                     </Form.Control>
                                 </Col>
                             </Form.Group>

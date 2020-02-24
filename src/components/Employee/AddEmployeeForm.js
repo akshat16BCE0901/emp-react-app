@@ -40,6 +40,10 @@ class AddEmployeeForm extends Component
 
         Axios.post("https://akkiapp.herokuapp.com/employee/add",employee).then(response => {
             console.log(response);
+            if(response.status===200)
+            {
+                alert("Registered Succesfully");
+            }
         });
     }
 

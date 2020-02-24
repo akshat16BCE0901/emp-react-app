@@ -35,7 +35,13 @@ class AddProjectForm extends Component
         console.log(project);
 
         Axios.post("https://akkiapp.herokuapp.com/project/add",project)
-        .then(response => console.log(response));
+        .then(response => {
+            console.log(response);
+            if(response.status===200)
+            {
+                alert("Registered Succesfully");
+            }
+        });
     }
 
     componentDidMount = () =>{
