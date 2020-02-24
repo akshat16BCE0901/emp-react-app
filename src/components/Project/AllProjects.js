@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table';
 class AllProjects extends Component
 {
     state = {
-        employees : []
+        projects : []
     }
 
     
@@ -13,8 +13,8 @@ class AllProjects extends Component
         const URL = "https://akkiapp.herokuapp.com/project/viewall";
         Axios.get(URL).then(response => response.data)
         .then((data)=>{
-            this.setState({employees : data});
-            console.log(this.state.employees);
+            this.setState({projects : data});
+            console.log(this.state.projects);
         });
     }
 
@@ -34,7 +34,7 @@ class AllProjects extends Component
                         </thead>
                         <tbody>
                             {
-                                this.state.employees.map(row =>
+                                this.state.projects.map(row =>
                                     (
                                         <tr key={row.id}>
                                             <td>{row.id}</td>

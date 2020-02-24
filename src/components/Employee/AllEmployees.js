@@ -14,6 +14,7 @@ class AllEmployees extends Component
         Axios.get(URL).then(response => response.data)
         .then((data)=>{
             this.setState({employees : data});
+            this.setState({employees : this.state.employees.filter(emp => emp.firstname!=null)})
             console.log(this.state.employees);
         });
     }

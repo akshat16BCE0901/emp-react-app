@@ -61,6 +61,7 @@ class AddJiraForm extends Component
         Axios.get("https://akkiapp.herokuapp.com/employee/getnames").then(response => response.data)
         .then((data) => {
             this.setState({allEmployees : data});
+            this.setState({allEmployees : this.state.allEmployees.filter(emp => emp.firstname!=null)})
             console.log(this.state.allEmployees);
         });
 

@@ -42,6 +42,8 @@ class AddProjectForm extends Component
         Axios.get("https://akkiapp.herokuapp.com/employee/getnames").then(response => response.data)
         .then((data) => {
             this.setState({employeesList : data});
+            
+            this.setState({employeesList : this.state.employeesList.filter(emp => emp.firstname!=null)})
             console.log(this.state.employeesList);
         });
     }
