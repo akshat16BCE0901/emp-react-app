@@ -7,6 +7,7 @@ import AddJiraForm from './components/Jira/AddJiraForm';
 import AllJiras from './components/Jira/AllJiras';
 import AllProjects from './components/Project/AllProjects';
 import AddProjectForm from './components/Project/AddProjectForm';
+import JiraView from './components/Jira/JiraView';
 
 
 import Navbar from 'react-bootstrap/Navbar';
@@ -23,7 +24,8 @@ var components = {
   addEmployeeForm : <AddEmployeeForm />,
   addJiraForm : <AddJiraForm />,
   projects : <AllProjects />,
-  addProjectForm : <AddProjectForm />
+  addProjectForm : <AddProjectForm />,
+  yourJiras : <JiraView />
 }
 
 
@@ -60,6 +62,9 @@ class App extends Component
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={()=> this.changeComponent(components.addProjectForm)}  >Project</NavDropdown.Item>
               </NavDropdown>
+            </Nav>
+            <Nav className="mr-auto">
+              <Nav.Link style={{color : "white"}} onClick={() => this.changeComponent(components.yourJiras)} >Your Jiras</Nav.Link>
             </Nav>
             <Form inline>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" />
