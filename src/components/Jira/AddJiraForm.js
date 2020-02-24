@@ -8,6 +8,8 @@ import Axios from 'axios';
 class AddJiraForm extends Component
 {
     state = {
+        allEmployees : [],
+        allProjects : [],
         "title": "",
         "description": "",
         "priority": "Medium",
@@ -53,6 +55,20 @@ class AddJiraForm extends Component
 
         Axios.post("https://akkiapp.herokuapp.com/jira/add",jira)
         .then(response => console.log(response));
+    }
+
+    componentDidMount = () =>{
+        Axios.get("https://akkiapp.herokuapp.com/employee/getnames").then(response => response.data)
+        .then((data) => {
+            this.setState({allEmployees : data});
+            console.log(this.state.allEmployees);
+        });
+
+        Axios.get("https://akkiapp.herokuapp.com/project/getnames").then(response => response.data)
+        .then((data) => {
+            this.setState({allProjects : data});
+            console.log(this.state.allProjects);
+        });
     }
 
     render(){
@@ -109,6 +125,11 @@ class AddJiraForm extends Component
                                 </Form.Label>
                                 <Col sm="10">
                                     <Form.Control onChange={this.controlInput} name="project_id" id="project_id" as="select" >
+                                        {
+                                            this.state.allProjects.map(row =>(
+                                            <option key={row.id} value={row.id}>{row.name}</option>
+                                            ))
+                                        }
                                         <option value="1">1 - DAC Refinement</option>
                                         <option value="2">2 - DAM Refinement</option>
                                         <option value="3">3 - CES Refinement</option>
@@ -141,6 +162,12 @@ class AddJiraForm extends Component
                                 </Form.Label>
                                 <Col sm="10">
                                     <Form.Control onChange={this.controlInput} name="assigned_to" id="assigned_to" as="select" >
+                                       
+                                        {
+                                            this.state.allEmployees.map(row => (
+                                                <option key={row.id} value={row.id}>{row.firstname+" "+row.lastname}</option>
+                                            ))
+                                        }
                                         <option value="1">Amruthkala Bhat</option>
                                         <option value="2">Akshat Singhal</option>
                                         <option value="3">Amit Valse</option>
