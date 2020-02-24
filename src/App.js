@@ -53,9 +53,9 @@ class App extends Component
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav variant="pills" className="mr-auto">
-              <Nav.Link onClick={() => this.changeComponent(components.employees)} >Employees</Nav.Link>
-              <Nav.Link onClick={() => this.changeComponent(components.jiras)} >Jiras</Nav.Link>
-              <Nav.Link onClick={() => this.changeComponent(components.projects)} >Projects</Nav.Link>
+              <Nav.Link style={{color : "white"}} onClick={() => this.changeComponent(components.employees)} >Employees</Nav.Link>
+              <Nav.Link style={{color : "white"}} onClick={() => this.changeComponent(components.jiras)} >Jiras</Nav.Link>
+              <Nav.Link style={{color : "white"}} onClick={() => this.changeComponent(components.projects)} >Projects</Nav.Link>
               <NavDropdown title="Add" id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={()=> this.changeComponent(components.addEmployeeForm)} >Employee</NavDropdown.Item>
                 <NavDropdown.Item onClick={()=> this.changeComponent(components.addJiraForm)} >Jira</NavDropdown.Item>
