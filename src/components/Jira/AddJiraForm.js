@@ -19,7 +19,7 @@ class AddJiraForm extends Component
         "assignee": 102,
         "assigned_to": null,
         "date_created": "2020-01-19",
-        "status": "",
+        "status": "Ready For Review",
         "date_ended": null
         }
 
