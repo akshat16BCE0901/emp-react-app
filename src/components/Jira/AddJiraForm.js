@@ -16,7 +16,7 @@ class AddJiraForm extends Component
         "story_points": 0,
         "project_id": 0,
         "sprint": null,
-        "assignee": 1,
+        "assignee": 102,
         "assigned_to": null,
         "date_created": "2020-01-19",
         "status": "",
