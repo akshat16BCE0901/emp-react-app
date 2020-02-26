@@ -25,7 +25,7 @@ class AllJiras extends Component
                     <Table responsive hover striped bordered>
                         <thead>
                             <tr>
-                                <th> ID</th>
+                                <th>ID</th>
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Priority</th>

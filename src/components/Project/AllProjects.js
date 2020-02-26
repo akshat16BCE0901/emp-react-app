@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
-import Table from 'react-bootstrap/Table';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import {AgGridReact} from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css'
 
 class AllProjects extends Component
 {
     state = {
-        projects : []
+        projects : [],
+        filteredProjectsList : [],
+        columnsHeaders : [
+            {headerName : "ID", field : "id"},
+            {headerName : "Name", field : "name"},
+            {headerName : "Description", field : "description"},
+            {headerName : "Project Head", field : "project_head"}
+        ]
     }
 
     
@@ -15,6 +24,18 @@ class AllProjects extends Component
         .then((data)=>{
             this.setState({projects : data});
             console.log(this.state.projects);
+            var a = [];
+            this.state.projects.forEach(row => {
+                var data_refine = {
+                    "id" : row.id,
+                    "name" : row.name,
+                    "description" : row.description,
+                    "project_head" : row.project_head.firstname+' '+row.project_head.lastname
+                }
+                a.push(data_refine);
+            });
+            this.setState({filteredProjectsList : a});
+            console.log(this.state.filteredProjectsList);
         });
     }
 
@@ -23,7 +44,7 @@ class AllProjects extends Component
             <div className="row" style={{backgroundColor:"white",padding : "10px"}}>
                 <div className="col-md-12">
                         
-                    <Table className="col-md-12" responsive striped bordered hover>
+                    {/* <Table className="col-md-12" responsive striped bordered hover>
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -40,15 +61,21 @@ class AllProjects extends Component
                                             <td>{row.id}</td>
                                             <td>{row.name}</td>
                                             <td>{row.description}</td>
-                                            <td>{row.project_head.id}</td>
+                                            <td>{row.project_head.firstname+ ' '+row.project_head.lastname}</td>
                                         </tr>
                                     ))
                             }
                         </tbody>
-                    </Table>
-            
+                    </Table> */}
+                    <div className="ag-theme-balham" style={{width : "1000px",height : "500px"}}>
+                        <AgGridReact
+                            columnDefs={this.state.columnsHeaders}
+                            rowData={this.state.filteredProjectsList}>
+                        </AgGridReact>
+                    </div>
                 </div>
             </div>
+            
         )
     }
 }
