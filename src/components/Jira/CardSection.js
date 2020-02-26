@@ -22,39 +22,36 @@ class CardSection extends Component
 
     render(){
         return(
-            <div className="row">
-                <CardColumns>
-                    <Card border="primary" style={{ width: '18rem' }}>
-                        <Card.Header className="text-center h4">TPM - 19591</Card.Header>
-                        <Card.Body>
-                            <Card.Title className="text-center">Reduce DAC Build Time</Card.Title>
-                            <Card.Text className="text-center text-justify">
-                                As an IDL user, I want to reduce the DAC build time in order to make it faster to run.
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer className="text-center">
-                            <Button variant="primary">Open</Button>
-                        </Card.Footer>
+            <CardColumns>
+                <Card border="primary">
+                    <Card.Header className="text-center h4">TPM - 19591</Card.Header>
+                    <Card.Body>
+                        <Card.Title className="text-center">Reduce DAC Build Time</Card.Title>
+                        <Card.Text className="text-center text-justify">
+                            As an IDL user, I want to reduce the DAC build time in order to make it faster to run.
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Footer className="text-center">
+                        <Button variant="primary">Open</Button>
+                    </Card.Footer>
+                </Card>
+                {
+                    this.state.allJiras.map(row =>(
+                        <Card key={row.id}  border="primary">
+                            <Card.Header className="text-center h4">TPM - {row.id}</Card.Header>
+                            <Card.Body>
+                                <Card.Title className="text-center">{row.title}</Card.Title>
+                                <Card.Text className="text-center text-justify">
+                                    {row.description}
+                                </Card.Text>
+                            </Card.Body>
+                            <Card.Footer className="text-center">
+                                <Button variant="primary">Open</Button>
+                            </Card.Footer>
                     </Card>
-                    {
-                        this.state.allJiras.map(row =>(
-                            <Card key={row.id}  border="primary" style={{ width: '18rem' }}>
-                                <Card.Header className="text-center h4">TPM - {row.id}</Card.Header>
-                                <Card.Body>
-                                    <Card.Title className="text-center">{row.title}</Card.Title>
-                                    <Card.Text className="text-center text-justify">
-                                       {row.description}
-                                    </Card.Text>
-                                </Card.Body>
-                                <Card.Footer className="text-center">
-                                    <Button variant="primary">Open</Button>
-                                </Card.Footer>
-                        </Card>
-                        ))
-                    }
-                </CardColumns>
-                
-            </div>
+                    ))
+                }
+            </CardColumns>
         )
     }
 }
