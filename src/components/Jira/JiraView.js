@@ -13,7 +13,7 @@ class JiraView extends Component
                     <CardSection />
                 </Col>
                 <Col md={1}></Col>
-                <Col md={2}>
+                <Col md={3}>
                     <JiraStatus />
                 </Col>
             </Row>
