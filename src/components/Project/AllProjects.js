@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
-import Table from 'react-bootstrap/Table';
+import {MDBDataTable, MDBTableHead, MDBTableBody} from 'mdbreact';
+import "mdbreact/dist/css/mdb.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 class AllProjects extends Component
 {
     state = {
-        projects : []
+        projects : [],
+        dataDisplay : []
     }
 
     
@@ -15,38 +18,60 @@ class AllProjects extends Component
         .then((data)=>{
             this.setState({projects : data});
             console.log(this.state.projects);
+            var arr= [];
+            this.state.projects.map(row => {
+                var obj = {
+                    "id" : row.id,
+                    "name" : row.name,
+                    "description" : row.description,
+                    "project_head" : row.project_head.firstname + ' ' + row.project_head.lastname
+                };
+                arr.push(obj);
+            });
+            this.setState({dataDisplay : arr});
+            console.log(this.state.dataDisplay);
         });
     }
 
     render(){
+        const data = {
+            columns: [
+              {
+                label: 'ID',
+                field: 'id',
+                sort: 'asc'
+              },
+              {
+                label: 'Name',
+                field: 'name',
+                sort: 'asc'
+              },
+              {
+                label: 'Description',
+                field: 'description',
+                sort: 'asc'
+              },
+              {
+                label: 'Project Head',
+                field: 'project_head',
+                sort: 'asc'
+              }
+            ],
+            rows: this.state.dataDisplay
+        };
         return(
             <div className="row" style={{backgroundColor:"white",padding : "10px"}}>
                 <div className="col-md-12">
-                        
-                    <Table className="col-md-12" responsive striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Project Head</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.projects.map(row =>
-                                    (
-                                        <tr key={row.id}>
-                                            <td>{row.id}</td>
-                                            <td>{row.name}</td>
-                                            <td>{row.description}</td>
-                                            <td>{row.project_head.firstname+ ' ' + row.project_head.lastname}</td>
-                                        </tr>
-                                    ))
-                            }
-                        </tbody>
-                    </Table>
-            
+
+                <MDBDataTable
+                    striped
+                    bordered
+                    hover
+                    responsive
+                    data= {data}
+                    >
+                </MDBDataTable>
+
                 </div>
             </div>
         )
