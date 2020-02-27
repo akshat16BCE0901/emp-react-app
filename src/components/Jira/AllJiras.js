@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import Table from 'react-bootstrap/Table';
 import Axios from 'axios';
+import {MDBDataTable} from 'mdbreact';
+import "mdbreact/dist/css/mdb.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 class AllJiras extends Component
 {
     state = {
-        jiras : []
+        jiras : [],
+        tableContent : []
     }
 
     componentDidMount(){
@@ -14,54 +18,104 @@ class AllJiras extends Component
         .then((data)=>{
             this.setState({jiras : data});
             console.log(this.state.jiras);
+            var arr= [];
+            this.state.jiras.map(row => {
+                var obj = {
+                    "id" : row.id,
+                    "title": row.title,
+                    "description": row.description,
+                    "priority": row.priority,
+                    "story_points": row.story_points,
+                    "project_id": row.project!=null?row.project.id:"Not Assigned",
+                    "sprint": row.sprint,
+                    "assignee": row.assignee.id,
+                    "assigned_to": row.assigned_to.id,
+                    "date_created": row.date_created,
+                    "status": row.status,
+                    "date_ended": row.date_ended
+                };
+                arr.push(obj);
+            });
+            this.setState({tableContent : arr});
         })
     }
 
     render(){
+        const data = {
+            columns: [
+              {
+                label: 'ID',
+                field: 'id',
+                sort: 'asc'
+              },
+              {
+                label: 'Title',
+                field: 'title',
+                sort: 'asc'
+              },
+              {
+                label: 'Description',
+                field: 'description',
+                sort: 'asc'
+              },
+              {
+                label: 'Priority',
+                field: 'priority',
+                sort: 'asc'
+              },
+              {
+                label: 'Story Points',
+                field: 'story_points',
+                sort: 'asc'
+              },
+              {
+                label: 'Project ID',
+                field: 'project_id',
+                sort: 'asc'
+              },
+              {
+                label: 'Sprint',
+                field: 'sprint',
+                sort: 'asc'
+              },
+              {
+                label: 'Assignee',
+                field: 'assignee',
+                sort: 'asc'
+              },
+              {
+                label: 'Assigned To',
+                field: 'assigned_to',
+                sort: 'asc'
+              },
+              {
+                label: 'Date Created',
+                field: 'date_created',
+                sort: 'asc'
+              },
+              {
+                label: 'Status',
+                field: 'status',
+                sort: 'asc'
+              },
+              {
+                label: 'Date Ended',
+                field: 'date_ended',
+                sort: 'asc'
+              }
+            ],
+            rows: this.state.tableContent
+        };
         return(
             <div className="row" style={{backgroundColor:"white",padding : "10px"}}>
                 <div className="col-md-12">
-                    
-                    <Table responsive hover striped bordered>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Priority</th>
-                                <th>Story Points</th>
-                                <th>Project</th>
-                                <th>Sprint</th>
-                                <th>Assignee</th>
-                                <th>Assigned To</th>
-                                <th>Date Created</th>
-                                <th>Status</th>
-                                <th>Date Ended</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.jiras.map(row =>
-                                    (
-                                        <tr key={row.id}>
-                                            <td>{row.id}</td>
-                                            <td>{row.title}</td>
-                                            <td>{row.description}</td>
-                                            <td>{row.priority}</td>
-                                            <td>{row.story_points}</td>
-                                            <td>{row.project!=null?row.project.id:"Not Assigned"}</td>
-                                            <td>{row.sprint}</td>
-                                            <td>{row.assignee.id}</td>
-                                            <td>{row.assigned_to.id}</td>
-                                            <td>{row.date_created}</td>
-                                            <td>{row.status}</td>
-                                            <td>{row.date_ended!=null?row.date_ended:"----"}</td>
-                                        </tr>
-                                        
-                                    ))
-                            }
-                        </tbody>
-                    </Table>
+                    <MDBDataTable
+                        striped
+                        hover
+                        responsive
+                        data= {data}
+                        >
+                    </MDBDataTable>
         
                 </div>
             </div>
