@@ -67,7 +67,7 @@ class App extends Component
             </Nav>
             <Nav className="mr-auto">
               <Nav.Link style={{color : "white"}} onClick={() => this.changeComponent(components.yourJiras)} >Your Jiras</Nav.Link>
-              <Nav.Link style={{color : "white"}} onClick={() => this.changeComponent(components.liveText)} >Live Edit</Nav.Link>
+              <Nav.Link style={{color : "white", backgroundColor : "green", borderRadius : "10px"}} onClick={() => this.changeComponent(components.liveText)} >Live Edit</Nav.Link>
             </Nav>
             <Form inline>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" />
