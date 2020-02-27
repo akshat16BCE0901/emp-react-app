@@ -8,7 +8,7 @@ import AllJiras from './components/Jira/AllJiras';
 import AllProjects from './components/Project/AllProjects';
 import AddProjectForm from './components/Project/AddProjectForm';
 import JiraView from './components/Jira/JiraView';
-
+import LiveText from './components/Personal/LiveText';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -25,7 +25,9 @@ var components = {
   addJiraForm : <AddJiraForm />,
   projects : <AllProjects />,
   addProjectForm : <AddProjectForm />,
-  yourJiras : <JiraView />
+  yourJiras : <JiraView />,
+  liveText : <LiveText />
+
 }
 
 
@@ -65,6 +67,7 @@ class App extends Component
             </Nav>
             <Nav className="mr-auto">
               <Nav.Link style={{color : "white"}} onClick={() => this.changeComponent(components.yourJiras)} >Your Jiras</Nav.Link>
+              <Nav.Link style={{color : "white"}} onClick={() => this.changeComponent(components.liveText)} >Live Edit</Nav.Link>
             </Nav>
             <Form inline>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" />

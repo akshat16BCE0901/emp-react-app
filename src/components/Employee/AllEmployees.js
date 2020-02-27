@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
-import Table from 'react-bootstrap/Table';
-
 import {MDBDataTable} from 'mdbreact';
 import "mdbreact/dist/css/mdb.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
