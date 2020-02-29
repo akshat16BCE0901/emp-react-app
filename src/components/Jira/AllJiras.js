@@ -4,6 +4,7 @@ import {MDBDataTable} from 'mdbreact';
 import "mdbreact/dist/css/mdb.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
+
 class AllJiras extends Component
 {
     state = {
