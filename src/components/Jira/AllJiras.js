@@ -27,8 +27,8 @@ class AllJiras extends Component
                     "story_points": row.story_points,
                     "project_id": row.project!=null?row.project.id:"Not Assigned",
                     "sprint": row.sprint,
-                    "assignee": row.assignee.id,
-                    "assigned_to": row.assigned_to.id,
+                    "assignee": row.assignee.firstname + ' '+ row.assignee.lastname,
+                    "assigned_to": row.assigned_to.firstname + ' '+ row.assigned_to.lastname,
                     "date_created": row.date_created,
                     "status": row.status,
                     "date_ended": row.date_ended
