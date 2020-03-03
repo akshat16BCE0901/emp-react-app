@@ -10,7 +10,7 @@ class IndividualJiraPage extends Component
        return(
         <div className="row" style={{backgroundColor:"white",padding : "10px"}}>
             <div className="col-md-12">
-
+                
             </div>
         </div>
        )
