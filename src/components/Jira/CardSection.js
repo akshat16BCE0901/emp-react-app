@@ -3,6 +3,7 @@ import CardColumns from 'react-bootstrap/CardColumns';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
+import { Link, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class CardSection extends Component
 {
@@ -46,7 +47,16 @@ class CardSection extends Component
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer className="text-center">
-                                <Button variant="primary">Open</Button>
+                                <Router>
+                                    <Link to="/abc">
+                                        <Button variant="primary">Open</Button>
+                                    </Link>
+                                    <Switch>
+                                        <Route path="/abc">
+                                            <Home />
+                                        </Route>
+                                    </Switch>
+                                </Router>
                             </Card.Footer>
                     </Card>
                     ))
@@ -54,6 +64,15 @@ class CardSection extends Component
             </CardColumns>
         )
     }
+    
+}
+
+function Home() {
+    return (
+        <div>
+        <h2>Home</h2>
+        </div>
+    );
 }
 
 export default CardSection;

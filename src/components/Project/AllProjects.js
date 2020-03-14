@@ -18,7 +18,7 @@ class AllProjects extends Component
             this.setState({projects : data});
             console.log(this.state.projects);
             var arr= [];
-            this.state.projects.map(row => {
+            this.state.projects.foreach(function(row){
                 var obj = {
                     "id" : row.id,
                     "name" : row.name,
